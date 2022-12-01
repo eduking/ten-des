@@ -1,4 +1,4 @@
-/*
+/* 
 Template Name: Admin pro Admin
 Author: Wrappixel
 Email: niravjoshi87@gmail.com
@@ -46,6 +46,6 @@ Login register and recover password Page
     margin-top: 0px; }
     .login-sidebar .login-box {
       right: 0px;
-      position: absolute;
+      /*position: absolute;*/
       height: 100%; }
   
