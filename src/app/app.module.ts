@@ -13,6 +13,7 @@ import { ProductComponent } from './pages/product/product.component';
 import { CatalogueComponent } from './pages/catalogue/catalogue.component';
 import { AppRoutingModule } from './app-routing.module';
 import { PagesComponent } from './pages/pages.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,11 +23,12 @@ import { PagesComponent } from './pages/pages.component';
     FooterComponent,
     SidebarComponent,
     BreadcrumbsComponent,
-    PagesComponent
+    PagesComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
