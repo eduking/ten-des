@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+
+import { ProductHttpService } from 'src/app/services/product-http.service';
 
 @Component({
   selector: 'app-product',
@@ -8,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ProductComponent implements OnInit {
 
-  constructor(private httpClient:HttpClient) {
+  constructor(private productHttpService:ProductHttpService) {
    }
 
   ngOnInit(): void {
@@ -21,14 +22,14 @@ export class ProductComponent implements OnInit {
 
   getProducts() {
     const url = "http://api.escuelajs.co/api/v1/products";
-    this.httpClient.get(url).subscribe(
+    this.productHttpService.getAll().subscribe(
     response => {
       console.log(response);    }
   ); }
 
   getProduct() {
     const url = "http://api.escuelajs.co/api/v1/products/5";
-    this.httpClient.get(url).subscribe(
+    this.productHttpService.getOne(1).subscribe(
     response => {
       console.log(response);    }
   ); }
@@ -37,12 +38,11 @@ export class ProductComponent implements OnInit {
     const data=  {
       title:"Taller numero 4",
       price:4,
-      description:"realizado por Ronnald Haro",
+      description:"realizado por eduardo",
       images:[],
       categoryId: 1,
     }
-    const url = "http://api.escuelajs.co/api/v1/products";
-    this.httpClient.post(url, data).subscribe(
+    this.productHttpService.store().subscribe(
     response => {
       console.log(response);    }
   ); }
@@ -51,18 +51,19 @@ export class ProductComponent implements OnInit {
     const data=  {
       title:"cuadernos",
       price:3,
-      description:"utiles Ronnald Haro",
+      description:"eduardo",
     }
-    const url = "http://api.escuelajs.co/api/v1/products/5";
-    this.httpClient.put(url, data).subscribe(
+    this.productHttpService.update(1).subscribe(
     response => {
       console.log(response);    }
   ); }
 
 
   deleteProduct() {
-    this.httpClient.delete("http://api.escuelajs.co/api/v1/products/5").subscribe(
+    this.productHttpService.destroy(1).subscribe(
     response => {
-      console.log(response);    }
-  ); }
-  ; }
+      console.log(response);
+    }
+  ); 
+  }
+}
