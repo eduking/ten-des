@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { CreateProduct, ProductModel, UpdateProduct } from '../models/product.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class ProductHttpService {
       return this.httpClient.get(url);
      }
   
-    store() {
+    store(product: CreateProduct) {
       const data=  {
         title:"Taller numero 4",
         price:4,
@@ -29,7 +30,7 @@ export class ProductHttpService {
       const url =  `${this.API_URL}`;
       return this.httpClient.post(url, data)}
   
-    update(id:number) {
+    update(id:number,product: UpdateProduct) {
       const data=  {
         title:"cuadernos",
         price:3,
