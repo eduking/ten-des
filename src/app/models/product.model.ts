@@ -15,6 +15,6 @@ export interface CreateProduct extends Omit <ProductModel, 'id' |'category'>{
 }
 export interface UpdateProduct extends Partial<ProductModel>{
   
-  categoryId:number;
+  categoryId?:number;
 
 }

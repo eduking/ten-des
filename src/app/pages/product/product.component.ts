@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-
-import { ProductHttpService } from 'src/app/services/product-http.service';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit, } from '@angular/core';
+import { ProductHttpService } from 'src/app/services/product-http.service'; 
+import { ProductModel, UpdateProduct } from 'src/app/models/product.model';
 
 @Component({
   selector: 'app-product',
@@ -9,6 +10,9 @@ import { ProductHttpService } from 'src/app/services/product-http.service';
 })
 export class ProductComponent implements OnInit {
 
+  products: ProductModel[] = [];
+  selectedProduct:UpdateProduct = {};
+
   constructor(private productHttpService:ProductHttpService) {
    }
 
@@ -16,54 +20,59 @@ export class ProductComponent implements OnInit {
     this.getProducts();
     //this.getProduct();
     //this.createProduct();
-    //this.updateProduct();
+    // this.updateProduct();
     //this.deleteProduct();
   }
-
-  getProducts() {
-    const url = "http://api.escuelajs.co/api/v1/products";
-    this.productHttpService.getAll().subscribe(
-    response => {
-      console.log(response);    }
-  ); }
-
-  getProduct() {
-    const url = "http://api.escuelajs.co/api/v1/products/5";
-    this.productHttpService.getOne(1).subscribe(
-    response => {
-      console.log(response);    }
-  ); }
-
-  createProduct() {
-    const data=  {
-      title:"Taller numero 4",
-      price:4,
-      description:"realizado por eduardo",
-      images:[],
-      categoryId: 1,
+  
+    getProducts() {
+      this.productHttpService.getAll().subscribe(
+        response => {
+          this.products = response;
+          console.log(response);
+        });
     }
-    this.productHttpService.store().subscribe(
-    response => {
-      console.log(response);    }
-  ); }
-
-  updateProduct() {
-    const data=  {
-      title:"cuadernos",
-      price:3,
-      description:"eduardo",
+    getProduct() {
+      this.productHttpService.getOne(2).subscribe(
+        response => {
+        console.log(response);
+      });
     }
-    this.productHttpService.update(1).subscribe(
-    response => {
-      console.log(response);    }
-  ); }
-
-
-  deleteProduct() {
-    this.productHttpService.destroy(1).subscribe(
-    response => {
-      console.log(response);
+  
+    createProduct() {
+      const data = {
+        title: 'Computadora Itel core i7',
+        price: 650,
+        description: 'Electrodomesticos / Erick Guevara',
+        images: [
+          'https://m.media-amazon.com/images/I/51A+xXT0yiL._AC_SY580_.jpg',
+        ],
+        categoryId: 1,
+      };
+      this.productHttpService.store(data).subscribe(
+        response => {
+        console.log(response);
+      });
     }
-  ); 
-  }
+    editProduct(product: ProductModel){
+      this.selectedProduct = product;
+    }
+    updateProduct() {
+      const data = {
+        title: 'Computadora Itel core i10',
+        price: 1150,
+        description: 'Electrodomesticos / Erick Guevara',
+      };
+      this.productHttpService.update(1, data).subscribe(
+        response => {
+        console.log(response);
+      });
+    }
+    deleteProduct(id: ProductModel['id']) {
+      this.productHttpService.destroy(id).subscribe(
+        response => {
+          this.products = this.products.filter(product => product.id != id );
+        console.log(response);
+      });
+    }
 }
+
