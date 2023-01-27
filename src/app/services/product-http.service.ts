@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CreateProductDto, ProductModel, UpdateProductDto } from '../models/product.model';
+import { CreateProductDto, ProductModel, UpdateProductDto } from '../entities/product.model';
 import { Observable, map } from 'rxjs';
 
 @Injectable({

@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CategoryComponent } from './category/category.component';
 import { ProductComponent } from './product/product.component';
-import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -13,8 +12,7 @@ import { FormsModule } from '@angular/forms';
     
   ],
   imports: [
-    CommonModule,
-    FormsModule,
+    CommonModule
   ],
   exports: [
     DashboardComponent,

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductModel, UpdateProductDto } from 'src/app/models/product.model';
+import { ProductModel, UpdateProductDto } from 'src/app/entities/product.model';
 import { ProductHttpService } from 'src/app/services/product-http.service';
 @Component({
   selector: 'app-product',

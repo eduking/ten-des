@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { PagesComponent } from './pages.component';
+import { CategoryComponent } from './category/category.component';
 import { ProductComponent } from './product/product.component';
-import { CatalogueComponent } from './catalogue/catalogue.component';
-
+import { PagesComponent } from './pages.component';
 
 const routes:Routes = [
   //rutas protegidas
   {path:'dashboard', component:PagesComponent,
 children:[
   {path:'', component:DashboardComponent},
-  {path:'catalogue', component: CatalogueComponent},
+  {path:'category', component: CategoryComponent},
   {path: 'product', component:ProductComponent},
   {path:'', redirectTo:'/dashboard', pathMatch:'full'},
 ]
@@ -21,10 +21,10 @@ children:[
 @NgModule({
   declarations: [],
   imports: [
-    RouterModule.forRoot(routes),
+    RouterModule.forChild(routes),
   ],
   exports:[
     RouterModule,
   ]
 })
-export class PageRoutingModule { }
+export class PagesRoutingModule { }
