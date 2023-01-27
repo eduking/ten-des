@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductModel, UpdateProductDto } from 'src/app/models/product.model';
 import { ProductHttpService } from 'src/app/services/product-http.service';
-
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -32,11 +31,45 @@ export class ProductComponent implements OnInit {
 }
 
   getProduct() {
-    this.productHttpService.getOne(3).subscribe(
+    this.productHttpService.getOne(2).subscribe(
       response => {
       console.log(response);   
       });
  }
+// currentEntity: ProductModel=
+// {
+// id:0,
+// title:"",
+// price:0,
+// description:"",
+// images:[],
+// category:{id:0,
+//           title:"",
+//             description:""},
+// };
+
+//  create():void {
+//   this.productHttpService.store()
+//   .subscribe(
+//     () => {
+//       this.currentEntity =
+//       {
+//         id:0,
+//         title:"",
+//         price:0,
+//         description:"",
+//         images:[],
+//         category:{id:0,
+//           title:"",
+//             description:""},
+        
+//       };
+//       this.router.navigate(["/login"]) 
+//     }
+//   )
+// }
+
+
 
   createProduct() {
     const data=  {
@@ -44,7 +77,7 @@ export class ProductComponent implements OnInit {
       price:4,
       description:"realizado por eduardo",
       images:[
-'https://marketing4ecommerce.net/wp-content/uploads/2018/10/tipos-de-im%C3%A1genes-1280x720.jpg'
+     'https://marketing4ecommerce.net/wp-content/uploads/2018/10/tipos-de-im%C3%A1genes-1280x720.jpg'
       ],
       categoryId: 1,
     }

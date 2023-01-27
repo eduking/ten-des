@@ -47,17 +47,50 @@
                 </thead>
                 <tbody>
                     <tr class="" *ngFor="let product of products">
+
+                        
+
                         <td>{{product.id}}</td>
                         <td>{{product.title}}</td>
                         <td>{{product.price}}</td>
                         <td>{{product.description}}</td>
-                        <td><img src="{{product.images}}" alt="" width="100px" height="100px">
-                        <td><button class="btn btn-primary" (click)="editProduct(product)">Editar</button></td>
-                        <td><button class="btn btn-danger" (click)="deleteProduct(product.id)">Eliminar</button></td>
+                        <td><img src="{{product.images}}"  class="rounded-full" alt="" width="100px" height="100px">
+
+                        <td><button class="btn btn-ghost btn-sm border-none" (click)="editProduct(product)"><svg xmlns="http://www.w3.org/2000/svg" id="Filled" viewBox="0 0 24 24" class="h-7 w-7 fill-green-500"><path d="M18,19v4.7a4.968,4.968,0,0,0,1.879-1.164l2.656-2.658A4.954,4.954,0,0,0,23.7,18H19A1,1,0,0,0,18,19Z"/><path d="M7.172,13.828A4,4,0,0,0,6,16.657V18H7.343a4,4,0,0,0,2.829-1.172L21.5,5.5a2.121,2.121,0,0,0-3-3Z"/><path d="M24,4.952a4.087,4.087,0,0,1-1.08,1.962L11.586,18.243A5.961,5.961,0,0,1,7.343,20H6a2,2,0,0,1-2-2V16.657a5.957,5.957,0,0,1,1.758-4.242L17.086,1.086A4.078,4.078,0,0,1,19.037,0c-.013,0-.024,0-.037,0H5A5.006,5.006,0,0,0,0,5V19a5.006,5.006,0,0,0,5,5H16V19a3,3,0,0,1,3-3h5V5C24,4.984,24,4.969,24,4.952Z"/></svg></button></td>
+                        <!-- <td><button class="btn btn-danger" (click)="deleteProduct(product.id)">Eliminar</button></td> -->
+                        <td>
+                        <label for="my-modal-3" class="btn btn-sm btn-ghost">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-5 w-5 fill-red-500">
+                                <g id="_01_align_center" data-name="01 align center">
+                                    <path
+                                        d="M22,4H17V2a2,2,0,0,0-2-2H9A2,2,0,0,0,7,2V4H2V6H4V21a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V6h2ZM9,2h6V4H9Zm9,19a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V6H18Z" />
+                                    <rect x="9" y="10" width="2" height="8" />
+                                    <rect x="13" y="10" width="2" height="8" />
+                                </g>
+                            </svg>
+                        </label>
+                    </td>
+                    <input type="checkbox" id="my-modal-3" class="modal-toggle" />
+                        <div class="modal">
+                            <div class="modal-box relative rounded-sm">
+                                <label  for="my-modal-3"
+                                    class="btn btn-sm btn-circle absolute right-2 top-2 bg-red-800 border-red-700">✕</label>
+                                <h3 class="text-lg font-bold text-red-700 text-center">Eliminar</h3>
+                                <p class="py-4">¿Estas Seguro?</p>
+                                <label (click)="deleteProduct(product.id)"class="btn btn-success btn-xs rounded-sm text-center"
+                                    >
+                                    <span class="text-white">Aceptar</span>
+                                </label>
+                                
+                            </div>
+                        </div>
+                    
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
 
-  
+   
+
+    
