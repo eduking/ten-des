@@ -8,13 +8,13 @@ export interface ProductModel{
   images:string[];
   category:CategoryModel;
 }
-export interface CreateProduct extends Omit <ProductModel, 'id' |'category'>{
+export interface CreateProductDto extends Omit <ProductModel, 'id' |'category'>{
   
   categoryId:number;
 
 }
-export interface UpdateProduct extends Partial<ProductModel>{
+export interface UpdateProductDto extends Partial<ProductModel>{
   
   categoryId?:number;
-
+ 
 }
