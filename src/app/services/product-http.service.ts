@@ -25,7 +25,7 @@ export class ProductHttpService {
   
     store(product: CreateProductDto):Observable<ProductModel> {
       const url= `${this.API_URL}`;
-      return this.httpClient.post<ProductModel>(url, product);
+      return this.httpClient.post<ProductModel>(this.API_URL,product);
       }
   
     update(id:ProductModel['id'],product: UpdateProductDto):Observable<ProductModel> {

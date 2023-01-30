@@ -11,8 +11,14 @@ export class ProductComponent implements OnInit {
   products: ProductModel[]=[];
   selectedProduct:UpdateProductDto={};
 
-  constructor(private productHttpService:ProductHttpService) {
+  constructor(private productHttpService:ProductHttpService) 
+  {
+    this.initProduct();
    }
+
+initProduct(){
+  this.selectedProduct ={title:"",price:0,description:""};
+}
 
   ngOnInit(): void {
     this.getProducts();
@@ -20,8 +26,17 @@ export class ProductComponent implements OnInit {
     //this.createProduct();
     //this.updateProduct();
     //this.deleteProduct();
-  }
 
+    }
+    data = {
+      id: this.selectedProduct.id ? this.selectedProduct.id : 0,
+      title: this.selectedProduct.title,
+      description: this.selectedProduct.description,
+      images: this.selectedProduct.images,
+      price: this.selectedProduct.price,
+      categoryId: this.selectedProduct.categoryId
+      };
+      
   getProducts() {
     this.productHttpService.getAll().subscribe(
     response => {
@@ -91,22 +106,29 @@ export class ProductComponent implements OnInit {
 
  }
 
-  updateProduct() {
-    const data=  {
+  // updateProduct() {
+  //   const data=  {
       
-      title:"cuadernos",
-      price:3,
-      description:"cuadernitos",
-    };
-    this.productHttpService.update(226,data).subscribe(
-    response => {
-      console.log(response);    }
-  ); }
+  //     title:"cuadernos",
+  //     price:3,
+  //     description:"cuadernitos",
+  //   };
+  //   this.productHttpService.update(226,data).subscribe(
+  //   response => {
+  //     console.log(response);    }
+  // ); }
 
+  updateProduct() {
+    return this.productHttpService.update(this.data, 
+      this.selectedProduct.id ? this.selectedProduct.id : 0 ).subscribe(
+        (response) => {
+      console.log(response);
+    });
+  }
 
   deleteProduct(id: ProductModel['id']) {
     this.productHttpService.destroy(id).subscribe(
-    response => {
+    (response) => {
       this.products= this.products.filter(product=> product.id !=id);
       console.log(response);
     }
